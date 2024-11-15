@@ -12,20 +12,20 @@ struct typeSTR_EntitaLista
 // Funzione per controllare la presenza di un ciclo nella lista collegata
 bool FX_bool_ControllaCiclo(typeSTR_EntitaLista* STR_p_Testa)
 {
-    void* p_ArrayCelleMemoria[2];  // Array per memorizzare gli ultimi due puntatori visitati
+    void* arr_p_ArrayCelleMemoria[2];  // Array per memorizzare gli ultimi due puntatori visitati
 
     // Itera attraverso la lista
     while(STR_p_Testa->STR_p_PuntatoreProssimoElemento != nullptr)
     {
         // Controlla se il puntatore attuale è uguale a uno dei due memorizzati (indicando un ciclo)
-        if((STR_p_Testa->STR_p_PuntatoreProssimoElemento == p_ArrayCelleMemoria[0]) ||
-           (STR_p_Testa->STR_p_PuntatoreProssimoElemento == p_ArrayCelleMemoria[1])) {
+        if((STR_p_Testa->STR_p_PuntatoreProssimoElemento == arr_p_ArrayCelleMemoria[0]) ||
+           (STR_p_Testa->STR_p_PuntatoreProssimoElemento == arr_p_ArrayCelleMemoria[1])) {
             return true; // Rilevato un ciclo
         }
 
         // Aggiorna l'array con i puntatori visitati
-        p_ArrayCelleMemoria[1] = p_ArrayCelleMemoria[0];                      // Sposta il puntatore più recente nel secondo slot
-        p_ArrayCelleMemoria[0] = STR_p_Testa->STR_p_PuntatoreProssimoElemento; // Salva il puntatore attuale nel primo slot
+        arr_p_ArrayCelleMemoria[1] = arr_p_ArrayCelleMemoria[0];                      // Sposta il puntatore più recente nel secondo slot
+        arr_p_ArrayCelleMemoria[0] = STR_p_Testa->STR_p_PuntatoreProssimoElemento; // Salva il puntatore attuale nel primo slot
     }
 
     return false; // Nessun ciclo rilevato
